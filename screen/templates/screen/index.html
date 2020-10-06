@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-12 row">
+  <form action="{% url 'screen:create' %}" method='POST' class="col-12">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="챗봇!" class="btn btn-lg btn-danger">
+  </form>
+</div>
+<hr>
+<div class="col-12 row justify-content-center m-0">
+  <table class="table table-bordered m-0">
+    <thead>
+      <tr>
+        <th scope="col" width="10%">#</th>
+        <th scope="col" width="20%">보내는 곳</th>
+        <th scope="col" width="10%">보내는 시간</th>
+        <th scope="col" width="30%">메시지</th>
+        <th scope="col" width="10%" class="text-center">삭제</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for chatInfo in chatInfos %}
+      <tr>
+        <td>{{ chatInfo.pk }}</td>
+        <td>{{ chatInfo.send_to }}</td>
+        <td>{{ chatInfo.chat_hour }}시 {{chatInfo.chat_minute}}분</td>
+        <td>{{ chatInfo.message }}</td>
+        <td class="text-center">
+        <form action="{% url 'screen:delete' chatInfo.pk %}" method="POST">
+         {% csrf_token %}
+          <input type="submit" value="X" class="btn btn-danger">
+        </form>
+          
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+</div>
+{% endblock content %}
