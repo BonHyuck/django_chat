@@ -9,7 +9,7 @@ class ChatInfoForm(forms.ModelForm):
             'message': forms.Textarea(attrs={'class':'form-control col-12 mb-3', 'placeholder':'메시지를 입력하세요.', 'rows':3, "cols":5}),
             'chat_hour': forms.NumberInput(attrs={'class':'form-control col-5 mb-3', 'placeholder':'0 ~ 23'}),
             'chat_minute':forms.NumberInput(attrs={'class':'form-control col-5 mb-3', 'placeholder':'0 ~ 59'}),
-            'send_to':forms.Select(attrs={'class':'form-control col-12 mb-3'})
+            'send_to':forms.TextInput(attrs={'class':'form-control col-12 mb-3'})
         }
 
         labels = {
